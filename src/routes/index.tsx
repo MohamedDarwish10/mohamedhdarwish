@@ -65,7 +65,7 @@ function Index() {
                 download="Mohamed_Darwish_Resume.pdf"
                 className="btn-apple-glass group flex items-center gap-3"
               >
-                Resume
+                Resume PDF
                 <svg className="w-5 h-5 group-hover:translate-y-[-2px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -106,7 +106,7 @@ function Index() {
                   src="/images/logo-extended.svg"
                   className="absolute"
                   style={{ height: "184px" }}
-                  initial={{ opacity: 0, width: "164px" }}
+                  initial={{ opacity: 0, width: "398px" }}
                   animate={{
                     opacity: [0, 1, 1, 0, 0],
                     width: ["164px", "398px", "398px", "164px", "164px"]
