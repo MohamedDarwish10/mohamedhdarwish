@@ -1,21 +1,34 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { personalInfo, education, experience, certificates, softwareSkills, languages, personalSkills, services, technicalSkills } from '@/data/personal';
-import { projects } from '@/data/projects';
+import { projects, Project } from '@/data/projects';
 import { ProjectShowcase } from '@/components/ProjectShowcase';
 import { Section } from '@/components/Section';
 import { SEO } from '@/components/SEO';
 import { SkillBar } from '@/components/SkillBar';
 import { SocialIcons } from '@/components/SocialIcons';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { ProjectModal } from '@/components/ProjectModal';
 
 export const Route = createFileRoute('/')({
   component: Index,
 });
 
 function Index() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Resume Download filename
+  const resumeUrl = "/Mohamed Darwish Resume.pdf";
+
   return (
     <>
       <SEO />
+
+      {/* Project Detail Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
 
       {/* Hero Section */}
       <section className="min-h-[90vh] flex items-center relative overflow-hidden">
@@ -47,7 +60,11 @@ function Index() {
                 </svg>
               </a>
 
-              <a href="#resume" className="btn-apple-glass group flex items-center gap-3">
+              <a
+                href={resumeUrl}
+                download="Mohamed_Darwish_Resume.pdf"
+                className="btn-apple-glass group flex items-center gap-3"
+              >
                 Resume
                 <svg className="w-5 h-5 group-hover:translate-y-[-2px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -72,9 +89,15 @@ function Index() {
                   src="/images/logo-small.svg"
                   className="absolute"
                   style={{ width: "164px", height: "184px" }}
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: [1, 0, 0, 0, 1], scale: [1, 1.5, 1.5, 1, 1] }}
+                  transition={{
+                    duration: 8, // Total cycle
+                    times: [0, 0.2, 0.4, 0.8, 1],
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 2
+                  }}
                 />
 
 
@@ -84,8 +107,17 @@ function Index() {
                   className="absolute"
                   style={{ height: "184px" }}
                   initial={{ opacity: 0, width: "164px" }}
-                  animate={{ opacity: 1, width: "398px" }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  animate={{
+                    opacity: [0, 1, 1, 0, 0],
+                    width: ["164px", "398px", "398px", "164px", "164px"]
+                  }}
+                  transition={{
+                    duration: 8,
+                    times: [0, 0.3, 0.7, 0.9, 1],
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 2
+                  }}
                 />
 
               </div>
@@ -246,7 +278,11 @@ function Index() {
           <ul className="grid grid-cols-1 gap-12">
             {projects.map((project, index) => (
               <li key={project.id}>
-                <ProjectShowcase project={project} index={index} />
+                <ProjectShowcase
+                  project={project}
+                  index={index}
+                  onOpenModal={setSelectedProject}
+                />
               </li>
             ))}
           </ul>

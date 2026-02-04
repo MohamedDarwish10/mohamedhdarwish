@@ -1,13 +1,13 @@
-import { Link } from '@tanstack/react-router';
 import { Project } from '@/data/projects';
 import { ProjectCarousel } from './ProjectCarousel';
 
 interface ProjectShowcaseProps {
   project: Project;
   index?: number;
+  onOpenModal: (project: Project) => void;
 }
 
-export function ProjectShowcase({ project, index = 0 }: ProjectShowcaseProps) {
+export function ProjectShowcase({ project, index = 0, onOpenModal }: ProjectShowcaseProps) {
   const isOdd = index % 2 === 1;
   return (
     <article className={`group relative flex flex-col md:flex-row gap-8 items-center bg-white dark:bg-navy-900/40 rounded-3xl p-6 md:p-8 border border-navy-100 dark:border-navy-800 transition-all duration-500 hover:shadow-2xl hover:border-brand-red/20 ${isOdd ? 'md:flex-row-reverse' : ''}`}>
@@ -55,16 +55,15 @@ export function ProjectShowcase({ project, index = 0 }: ProjectShowcaseProps) {
           </div>
         </div>
 
-        <Link
-          to="/projects/$projectId"
-          params={{ projectId: project.id }}
+        <button
+          onClick={() => onOpenModal(project)}
           className="btn-primary inline-flex items-center gap-2 group-hover:translate-x-1"
         >
           View Case Study
           <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </Link>
+        </button>
       </div>
     </article>
   );
