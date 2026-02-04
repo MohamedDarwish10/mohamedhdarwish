@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-red: #800020;
+    --brand-burgundy: #541A2B;
+    --gold-main: #D4AF37;
+    --accent-peach: #FFD4A3;
+    --navy-dark: #1a1f36;
+    --navy-light: #F3F4F7;
+    --bg-oled: #000814;
+  }
+
+  body {
+    @apply bg-white dark:bg-bg-oled text-navy-900 dark:text-gray-100;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply py-16 md:py-24 relative overflow-hidden;
+  }
+
+  .heading-secondary {
+    @apply font-bold text-3xl md:text-5xl text-navy-900 dark:text-white tracking-tight uppercase;
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 bg-gradient-to-br from-brand-red to-brand-burgundy text-white rounded-full font-bold uppercase tracking-wider hover:shadow-2xl hover:scale-105 transition-all duration-300;
+  }
+
+  /**
+   * Liquid Glass Button with Bold Gradient Border
+   */
+  .btn-liquid {
+    @apply relative px-8 py-3 rounded-full font-bold uppercase tracking-wider text-white transition-all duration-300 overflow-hidden;
+    background: linear-gradient(135deg, rgba(128, 0, 32, 0.8), rgba(212, 175, 55, 0.8));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-liquid::before {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  }
+
+  .btn-liquid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  }
+
+  .btn-liquid:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Apple Liquid Glass Button (macOS Big Sur Style) */
+  .btn-apple-glass {
+    @apply relative px-8 py-3 rounded-full font-bold uppercase tracking-wider text-navy-900 dark:text-white transition-all duration-300;
+
+    /* Very subtle transparent background */
+    background: rgba(255, 255, 255, 0.25);
+
+    /* Subtle white border like macOS */
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+
+    /* Lighter frosted glass blur */
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+
+    /* Subtle depth shadows */
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .btn-apple-glass {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-apple-glass:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .dark .btn-apple-glass:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
