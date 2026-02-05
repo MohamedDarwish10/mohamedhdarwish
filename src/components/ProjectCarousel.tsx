@@ -24,7 +24,7 @@ export function ProjectCarousel({ images, projectTitle }: ProjectCarouselProps) 
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
+  const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
@@ -65,20 +65,19 @@ export function ProjectCarousel({ images, projectTitle }: ProjectCarouselProps) 
   return (
     <>
       <FullScreenImageViewer
-        isOpen={!!fullScreenImage}
-        onClose={() => setFullScreenImage(null)}
-        imageSrc={fullScreenImage || ''}
-        altText={projectTitle}
+        isOpen={fullScreenIndex !== null}
+        onClose={() => setFullScreenIndex(null)}
+        images={images}
+        initialIndex={fullScreenIndex ?? 0}
       />
 
       <div className="relative w-full group/carousel">
-        <div className="overflow-hidden rounded-lg shadow-lg cursor-zoom-in" ref={emblaRef}>
+        <div className="overflow-hidden rounded-lg shadow-lg cursor-grab active:cursor-grabbing" ref={emblaRef}>
           <div className="flex transition-transform duration-500 ease-out">
             {images.map((image, index) => (
               <div
                 key={index}
-                className="flex-[0_0_100%] min-w-0 relative aspect-[19/10] bg-navy-50 dark:bg-navy-900 overflow-hidden"
-                onClick={() => setFullScreenImage(image)}
+                className="flex-[0_0_100%] min-w-0 relative aspect-[19/10] bg-navy-50 dark:bg-navy-900 overflow-hidden group/slide"
               >
                 {/* Blurred Background Layer */}
                 <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
@@ -92,7 +91,7 @@ export function ProjectCarousel({ images, projectTitle }: ProjectCarouselProps) 
                 </div>
 
                 {/* Main Image Layer */}
-                <div className="absolute inset-0 z-10 flex items-center justify-center transition-transform duration-500 group-hover/carousel:scale-[1.02]">
+                <div className="absolute inset-0 z-10 flex items-center justify-center transition-transform duration-500 group-hover/slide:scale-[1.02]">
                   <img
                     src={image}
                     alt={`${projectTitle || 'Project'} screenshot ${index + 1}`}
@@ -101,6 +100,20 @@ export function ProjectCarousel({ images, projectTitle }: ProjectCarouselProps) 
                     decoding="async"
                   />
                 </div>
+
+                {/* Fullscreen Trigger Button (Bottom Right) */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFullScreenIndex(index);
+                  }}
+                  className="absolute bottom-4 right-4 z-20 p-2.5 bg-black/50 hover:bg-brand-red text-white rounded-xl backdrop-blur-md opacity-0 group-hover/slide:opacity-100 transition-all duration-300 translate-y-2 group-hover/slide:translate-y-0 shadow-lg"
+                  aria-label="View in fullscreen"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
+                </button>
               </div>
             ))}
           </div>
