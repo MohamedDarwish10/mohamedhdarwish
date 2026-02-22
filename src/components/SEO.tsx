@@ -12,7 +12,7 @@ export function SEO({
   title = "Mohamed Darwish - Data Analyst & Power BI Specialist",
   description = "Portfolio of Mohamed Darwish, Data Analyst and Power BI Specialist with over 2 years of experience in data visualization and business intelligence.",
   image = "/og-image.jpg",
-  url = "https://mohameddarwish.com",
+  url = "https://mohamedhdarwish.vercel.app/",
   type = "website"
 }: SEOProps) {
   const fullTitle = title.includes("Mohamed Darwish") ? title : `${title} | Mohamed Darwish`;
@@ -24,7 +24,7 @@ export function SEO({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <meta name="author" content="Mohamed Darwish" />
-      <meta name="keywords" content="Data Analyst, Power BI, Business Intelligence, Data Visualization, Analytics, Dashboard" />
+      <meta name="keywords" content="Mohamed Darwish, Data Analyst, Power BI Specialist, Power BI, Business Intelligence, Data Visualization, Analytics, Dashboard" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
