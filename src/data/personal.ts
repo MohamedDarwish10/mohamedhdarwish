@@ -31,7 +31,7 @@ export interface Language {
 export const personalInfo = {
   name: "Mohamed Darwish",
   title: "Data Analyst & Power BI Specialist",
-  bio: "I'm a passionate Data Analyst and Power BI Specialist with over 2 years of experience in transforming raw data into actionable insights. I specialize in creating interactive dashboards, data visualization, and business intelligence solutions using Power BI, Python, SQL, and various analytics tools. With a strong background in engineering and data analysis, I bring a unique perspective to solving complex business problems through data-driven solutions.",
+  bio: "I'm a passionate Data Analyst and Power BI Specialist with over 3 years of experience in transforming raw data into actionable insights. I specialize in creating interactive dashboards, data visualization, and business intelligence solutions using Power BI, Python, SQL, and various analytics tools. With a strong background in engineering and data analysis, I bring a unique perspective to solving complex business problems through data-driven solutions.",
   email: "mohamedhdarwish97@gmail.com",
   phone: "+201017673236",
   location: "5th Settlement, New Cairo, Egypt",
@@ -48,6 +48,20 @@ export const education: Education[] = [
 ];
 
 export const experience: Experience[] = [
+  {
+    title: "Data Business Intelligence",
+    company: "Up Shifters",
+    period: "Feb 2026 – Present",
+    description: [
+      "Built a complete multi-platform advertising analytics semantic model from scratch in Power BI, integrating performance data across Meta, Google, TikTok, Snapchat, X (Twitter) and ClickHouse, delivering executive-level reporting across marketing and salesoperations.",
+      "Redesigned enterprise data models into Star Schema architecture, optimizing relationships, simplifying semantic models, improving DAX performance, and significantly enhancing report scalability and maintainability.",
+      "Developed dynamic forecasting logic distinguishing actuals from forecasted values, replacing static logic with a fully dynamic boundary calculation tied to live data refresh",
+      "Automated reporting for 20+ business KPIs (Leads, CPL, CPC, CTR, and more), reducing manual reporting time by 70%+ through advanced DAX, Power Query, and data modeling.",
+      "Built scalable ETL pipelines, standardized UTM attribution, resolved cross-platform data quality issues, and managed Power BI Service deployments, scheduled refreshes, and enterprise reporting workflows.",
+      "Developed custom Power BI solutions, including HTML ad creative galleries, branded report themes, and executive dashboards that enabled faster campaign analysis and data-driven decision-making across teams.",
+      "Conducted multiple Power BI and Data Analytics training sessions, preparing training materials, mentoring learners through real-world hands-on exercises, and providing technical guidance on SQL, Power BI, DAX, Power Query, data modeling, and dashboard development.",
+    ],
+  },
   {
     title: "Data Analyst & Power BI Specialist",
     company: "Heroleads",
